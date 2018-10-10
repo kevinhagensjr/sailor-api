@@ -1,5 +1,5 @@
 const {MongoClient} = require('mongodb');
-const debug = require('debug')('Topik:Database');
+const debug = require('debug')('sailor:Database');
 const config = require('./../config');
 
 let database = {
