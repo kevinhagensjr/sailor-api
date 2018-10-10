@@ -1,0 +1,31 @@
+{
+  "name": "sailor-api",
+  "version": "1.0.0",
+  "description": "Garage Sailor Api",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinhagensjr/sailor-api.git"
+  },
+  "author": "Kevin Hagens Jr.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevinhagensjr/sailor-api/issues"
+  },
+  "homepage": "https://github.com/kevinhagensjr/sailor-api#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.1",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "debug": "^4.1.0",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
+    "mongodb": "^2.2.33",
+    "redis": "^2.8.0",
+    "relative-date": "^1.1.3"
+  }
+}
