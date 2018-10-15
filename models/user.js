@@ -3,6 +3,7 @@ const {ObjectID} = require('mongodb');
 const {promisify} = require('util');
 const debug = require('debug')('Sailor:UserModel');
 const config = require('./../config');
+const redis = require('./../services/redis');
 
 class UserModel{
  constructor(){
