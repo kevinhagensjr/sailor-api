@@ -152,7 +152,7 @@ class IndexController{
 		}
 
 		//get username
-		username = await this.userModel.getUsername(userID);
+		username = await this.userModel.getName(userID);
 
 		//get API token
 		const token = auth.generateToken(userID);
