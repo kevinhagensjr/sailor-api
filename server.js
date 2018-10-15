@@ -11,7 +11,7 @@ class SailorAPI{
 	constructor() {
 		debug("API initializing, server name: " + config.server.name);
 		this.running = false;
-		try{
+	//	try{
 			debug("Setting up express configurations");
 			//initialize express
 			this.api = express();
@@ -27,9 +27,9 @@ class SailorAPI{
 			//initialize router
 			this.routes = require('./routes')(this.api);
 
-		}catch(e){
+	/*	}catch(e){
 			debug("Failed to initialize API, " + e);
-		}
+		} */
 	}
 
 	start(){
