@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const debug = require('debug')('sailor:Server');
+const debug = require('debug')('Sailor:Server');
 const cluster = require('cluster');
 const config = require('./config');
 let database = require('./services/database');
@@ -43,7 +43,7 @@ class SailorAPI{
 
 database.connect((db) => {
 	if(!db){
-		debug('Failed to start api, cant connect to databse');
+		debug('Failed to start api, cant connect to database');
 		return false;
 	}
 

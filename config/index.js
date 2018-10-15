@@ -27,7 +27,7 @@ let config = {
 			user 	 : '#new-user',
 			sale 	 : '#new-sale',
 			feedback : '#user-feedback',
-			signup   : '#signup',
+			signup   : '#signup'
 		}
 	}
 };
