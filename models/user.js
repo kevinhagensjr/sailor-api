@@ -175,9 +175,46 @@ class UserModel{
      }
 
      email = result[0].email;
-     this.setKeyToCache(this.prefix + userID,'email',email);
+    // this.setKeyToCache(this.prefix + userID,'email',email);
 
      return email;
+
+   }catch(e){
+     debug('ERROR, failed to get email, ' + e);
+     return false;
+   }
+ }
+
+ /*
+   @params - userID - id of user for query
+   Description: get name
+ */
+ async getName(userID){
+
+   if(!userID){
+     return false;
+   }
+
+   let name = false;//await this.getKeyFromCache(this.prefix  + userID,'email');
+   if(name && email.length > 0){
+     return name;
+   }
+
+   try{
+
+     const result = await this.collection
+     .find({_id : new ObjectID(userID)})
+     .project({name : 1,_id : 0})
+     .toArray();
+
+     if(result.length == 0){
+       return false;
+     }
+
+     name = result[0].email;
+    // this.setKeyToCache(this.prefix + userID,'email',email);
+
+     return name;
 
    }catch(e){
      debug('ERROR, failed to get email, ' + e);
@@ -222,7 +259,7 @@ class UserModel{
      }
 
      photo = result[0].photo;
-     this.setKeyToCache(this.prefix + userID,'photo',photo);
+     //this.setKeyToCache(this.prefix + userID,'photo',photo);
 
      return photo;
 
