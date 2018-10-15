@@ -3,7 +3,7 @@ const {ObjectID} = require('mongodb');
 const {promisify} = require('util');
 const debug = require('debug')('Sailor:UserModel');
 const config = require('./../config');
-const redis = require('./../services/redis');
+//const redis = require('./../services/redis');
 
 class UserModel{
  constructor(){
@@ -11,11 +11,11 @@ class UserModel{
    this.collection = db.collection(this.prefix);
 
    //redis commands as cache functions
-   this.getKeyFromCache = promisify(redis.hget).bind(redis);
+  /* this.getKeyFromCache = promisify(redis.hget).bind(redis);
    this.setKeyToCache = promisify(redis.hset).bind(redis);
    this.getCache = promisify(redis.get).bind(redis);
    this.setCache = promisify(redis.set).bind(redis);
- //	this.getHash = promisify(redis.hgetall).bind(redis);;
+ //	this.getHash = promisify(redis.hgetall).bind(redis);; */
  }
 
  /*
@@ -96,7 +96,7 @@ class UserModel{
 
      const key = this.prefix + '_' + userID;
 
-     let user = await this.getCache(key);
+     let user = false;//await this.getCache(key);
      if(user && user.length > 0){
        return JSON.parse(user);
      }
@@ -158,7 +158,7 @@ class UserModel{
      return false;
    }
 
-   let email = await this.getKeyFromCache(this.prefix  + userID,'email');
+   let email = false;//await this.getKeyFromCache(this.prefix  + userID,'email');
    if(email && email.length > 0){
      return email;
    }
@@ -205,7 +205,7 @@ class UserModel{
      return false;
    }
 
-   let photo = await this.getKeyFromCache(this.prefix + userID,'photo');
+   let photo = false;//await this.getKeyFromCache(this.prefix + userID,'photo');
    if(photo && photo.length > 0){
      return photo;
    }

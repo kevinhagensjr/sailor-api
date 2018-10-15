@@ -1,7 +1,7 @@
 const {db} = require('./../services/database');
 const {ObjectID} = require('mongodb');
 const {promisify} = require('util');
-const redis = require('./../services/redis');
+//const redis = require('./../services/redis');
 const debug = require('debug')('Sailor:SaleModel');
 const config = require('./../config');
 
@@ -12,12 +12,12 @@ class SaleModel{
     this.collection = db.collection(this.prefix);
 
     //redis commands as cache functions
-    this.getKeyFromCache = promisify(redis.hget).bind(redis);
+  /*  this.getKeyFromCache = promisify(redis.hget).bind(redis);
     this.setKeyToCache = promisify(redis.hset).bind(redis);
     this.getCache = promisify(redis.get).bind(redis);
     this.setCache = promisify(redis.set).bind(redis);
 		this.pullStack = promisify(redis.lrange).bind(redis);
-		this.pushStack = promisify(redis.lpush).bind(redis);
+		this.pushStack = promisify(redis.lpush).bind(redis); */
 
 	}
 
@@ -201,7 +201,7 @@ class SaleModel{
         return false;
       }
 
-      let userID = await this.getKeyFromCache(this.prefx + saleID,'userID');
+      let userID = false;//await this.getKeyFromCache(this.prefx + saleID,'userID');
       if(userID && userID.length > 0){
         return userID;
       }
@@ -234,7 +234,7 @@ class SaleModel{
         return false;
       }
 
-      let title = await this.getKeyFromCache(this.prefx + saleID,'title');
+      let title = false;//await this.getKeyFromCache(this.prefx + saleID,'title');
       if(title && title.length > 0){
         return title;
       }
@@ -259,6 +259,7 @@ class SaleModel{
       }
   }
 
+
   /*
     @param - saleID - id of the story
     Description: get text from story
@@ -268,7 +269,7 @@ class SaleModel{
         return false;
       }
 
-      let description = await this.getKeyFromCache(this.prefx + saleID,'description');
+      let description = false;//await this.getKeyFromCache(this.prefx + saleID,'description');
 
       try{
         const result = await this.collection
@@ -300,7 +301,7 @@ class SaleModel{
         return false;
       }
 
-      let thumbnails = await this.getKeyFromCache(this.prefx + saleID,'thumbnails');
+      let thumbnails = false;//await this.getKeyFromCache(this.prefx + saleID,'thumbnails');
 
       try{
         const result = await this.collection
@@ -331,7 +332,7 @@ class SaleModel{
         return false;
       }
 
-      let timestamp = await this.getKeyFromCache(this.prefx + saleID,'timestamp');
+      let timestamp = false;//await this.getKeyFromCache(this.prefx + saleID,'timestamp');
 
       try{
         const result = await this.collection

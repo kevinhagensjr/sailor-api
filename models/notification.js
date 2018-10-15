@@ -1,7 +1,7 @@
 const {db} = require('./../services/database');
 const {ObjectID} = require('mongodb');
 const {promisify} = require('util');
-const redis = require('./../services/redis');
+//const redis = require('./../services/redis');
 const debug = require('debug')('Sailor:NotificationModel');
 const config = require('./../config');
 
