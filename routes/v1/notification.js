@@ -1,7 +1,7 @@
 const express = require('express');
 const debug = require('debug')('Sailor:NotificationRouter');
 
-class SailorRouter{
+class NotificationRouter{
 	constructor(){
 		this.notificationController = require('../../controllers/v1/notification');
 		this.router = new express.Router();
