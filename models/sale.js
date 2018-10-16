@@ -126,7 +126,7 @@ class SaleModel{
       return result;
 
     }catch(e){
-      debug('ERROR, failed to add story, ' + e);
+      debug('ERROR, failed to add garge sale, ' + e);
       return false;
     }
 	}
