@@ -52,8 +52,9 @@ class SaleController{
 				}
 			};
 
+			let thumbnails = [];
 			if(thumbnailList){
-				let thumbnails = thumbnailList.split(',');
+				thumbnails = thumbnailList.split(',');
 				for(let i=0; i < thumbnails.length; i++){
 						thumbnails[i] = config.cdn + thumbnails[i];
 				}
@@ -115,12 +116,12 @@ class SaleController{
 				debug('SALE POSTED: userID: ' + userID + ', saleID: ' + saleID + ' message: ' + message);
 		}
 
-			const link = "garagesailor.com/sale/" + saleID;//'http://topik.me/story/' + storyID;
-			return res.json({
-				success : true,
-				saleID : saleID,
-				link : link
-			});
+		const link = "garagesailor.com/sale/" + saleID;//'http://topik.me/story/' + storyID;
+		return res.json({
+			success : true,
+			saleID : saleID,
+			link : link
+		});
   }
 
   async sale(req,res){
