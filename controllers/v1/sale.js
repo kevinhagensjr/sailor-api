@@ -17,7 +17,10 @@ class SaleController{
       const title = req.body.title;
       const description = req.body.description;
       const thumbnailList = req.body.thumbnails;
-      const timestamp = Date.now();
+			const address = req.body.address;
+			const phone   = req.body.phone;
+			const rating  = req.body.rating;
+			const timestamp = Date.now();
 
 			if(!userID){
 				return res.json({
@@ -34,22 +37,27 @@ class SaleController{
 			}
 
 			if(!description){
-				text = "";
-			}
-
-			let thumbnails = thumbnailList.split(',');
-			if(thumbnailList){
-				for(let i=0; i < thumbnails.length; i++){
-						thumbnails[i] = config.cdn + thumbnails[i];
-				}
+				description = "";
 			}
 
       let saleObject = {
 				userID : userID,
 				title : title,
 				description : description,
-				timestamp : timestamp
+				timestamp : timestamp,
+				pref : {
+					phone : phone,
+					rating : rating,
+					address : address
+				}
 			};
+
+			if(thumbnailList){
+				let thumbnails = thumbnailList.split(',');
+				for(let i=0; i < thumbnails.length; i++){
+						thumbnails[i] = config.cdn + thumbnails[i];
+				}
+			}
 
 			if(thumbnails.length > 0){
 				saleObject.thumbnails = thumbnails;
@@ -71,7 +79,7 @@ class SaleController{
 			}
 
 			//create notification
-			const username = await this.userModel.getUsername(userID);
+			const username = await this.userModel.getName(userID);
 			if(username){
 					const message = username + ' posted a sale';
 					await this.notificationModel.setNotification({
