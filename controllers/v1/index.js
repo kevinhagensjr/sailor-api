@@ -315,10 +315,10 @@ class IndexController{
 	}
 
 	async signin(req,res){
-	  let email 		= req.body.email;
+	  const email 		= req.body.email;
 		const password 		= req.body.password;
 		const deviceType   	= req.body.device || 'iOS';
-		const deviceToken   = req.body.token;
+		const deviceToken   = false; //req.body.token;
 
 		const errorResponse = {
 			success : false,
@@ -367,16 +367,12 @@ class IndexController{
 				});
 			}
 		}
-
-		//get username
-		username = await this.userModel.getEmail(userID);
 		//get API token
 		const token = auth.generateToken(userID);
 		return res.json({
 			success		: true,
 			userID		: userID,
-			apiToken	: token,
-			username	: username
+			apiToken	: token
 		});
 	}
 
