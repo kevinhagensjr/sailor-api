@@ -11,8 +11,8 @@ class SaleRouter{
 	listen(){
 		const self = this;
 
-    this.router.get('/', (req, res) => {
-			return self.saleController.userSales(req, res);
+		this.router.get('/', (req, res) => {
+			return self.saleController.sales(req, res);
 		});
 
 		this.router.get('/:saleID', (req, res) => {

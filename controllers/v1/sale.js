@@ -143,12 +143,28 @@ class SaleController{
       });
     }
 
-    sale.username = await this.userModel.getUsername(sale.userID);
-		sale.thumbnails = await this.userModel.getThumbnails(sale.userID);
+    sale.username = await this.userModel.getName(sale.userID);
 		sale.timestamp = relativeDate(sale.timestamp);
 
     return res.json(sale);
   }
+
+	async sales(req,res){
+		const userID = auth.getUserID(req);
+		if(!userID){
+			return res.json({
+				success : false,
+				error : 'Account is not valid'
+			});
+		}
+
+		const sales = await this.saleModel.getHome();
+		if(!sales){
+			return res.json([]);
+		}
+		return res.json(sales);
+	}
+
 
   async remove(req,res){
     const userID = auth.getUserID(req);
@@ -221,21 +237,6 @@ class SaleController{
 		});
 	}
 
-	async userSales(req,res){
-		const userID = auth.getUserID(req);
-		if(!userID){
-			return res.json({
-				success : false,
-				error : 'Account is not valid'
-			});
-		}
-
-		const sales = await this.saleModel.getUserSales(userID);
-		if(!sales){
-			return res.json([]);
-		}
-		return res.json(sales);
-	}
 
 }
 

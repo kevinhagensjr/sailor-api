@@ -115,7 +115,7 @@ class SaleModel{
 		}
 }
 
-	async getHome(index = 0){
+	async getHome(){
 
     try{
       const result = await this.collection
