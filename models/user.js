@@ -196,23 +196,22 @@ class UserModel{
    }
 
    let name = false;//await this.getKeyFromCache(this.prefix  + userID,'email');
-   if(name && email.length > 0){
+   if(name){
      return name;
    }
 
    try{
-
      const result = await this.collection
      .find({_id : new ObjectID(userID)})
-     .project({name : 1,_id : 0})
+     .project({username : 1,_id : 0})
      .toArray();
 
      if(result.length == 0){
        return false;
      }
 
-     name = result[0].email;
-    // this.setKeyToCache(this.prefix + userID,'email',email);
+     name = result[0].username;
+    // this.setKeyToCache(this.prefix + userID,'name',name);
 
      return name;
 

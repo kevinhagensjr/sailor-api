@@ -15,7 +15,7 @@ class SaleController{
   async post(req,res){
       const userID = auth.getUserID(req);
       const title = req.body.title;
-      const description = req.body.description;
+      let description = req.body.description;
       const thumbnailList = req.body.thumbnails;
 			const address = req.body.address;
 			const phone   = req.body.phone;

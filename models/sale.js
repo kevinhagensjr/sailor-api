@@ -187,7 +187,7 @@ class SaleModel{
 			return result[0]._id;
 
 		}catch(e){
-			debug('ERROR, failed to get story id, ' + e);
+			debug('ERROR, failed to get sale id, ' + e);
 			return false;
 		}
 	}
