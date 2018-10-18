@@ -10,16 +10,14 @@ class UserController{
 
 	async profile(req,res){
 		const userID = auth.getUserID(req);
-		const email = req.params.email;
+		const accountID = req.params.accountID;
 
-		if(!username){
+		if(!userID){
 			return res.json({
 				success : false,
 				error   : 'Account is invalid'
 			});
 		}
-
- 	  const accountID = await this.userModel.getUserID(email);
 		if(!accountID){
 			return res.json({
 				success : false,

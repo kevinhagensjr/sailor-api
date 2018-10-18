@@ -14,7 +14,7 @@ class UserRouter{
 			return self.userController.account(req, res);
   	});
 
-		this.router.get('/profile/:username', (req, res) => {
+		this.router.get('/profile/:userID', (req, res) => {
 			return self.userController.profile(req, res);
   	});
 
