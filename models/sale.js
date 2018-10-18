@@ -54,7 +54,7 @@ class SaleModel{
 
 		try{
 			const result = await this.collection
-			.find({_id : new ObjectID(saleID)})
+			.find({_id : new ObjectID(saleID.toString())})
 			.toArray();
 			if(!result || result.length == 0){
 				return false;
