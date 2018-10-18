@@ -68,33 +68,6 @@ class SaleModel{
 			return false;
 		}
 	}
-
-	async getSale(saleArray){
-		if(!saleArray || saleArray < 1){
-			return false;
-		}
-
-		for(let i= 0; i < saleArray.length; i++){
-			saleArray[i] = new ObjectID(saleArray[i]);
-		}
-
-		//convert to mongo object ids
-		try{
-			const result = await this.collection
-			.find({_id : {$in : saleArray }})
-			.sort({timestamp : -1})
-			.toArray();
-
-			if(!result || result.length == 0){
-				return false;
-			}
-
-			return result;
-		}catch(e){
-			return false;
-		}
-	}
-
 	async getUserSales(userID){
 		if(!userID){
 			return false;
