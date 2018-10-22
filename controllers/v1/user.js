@@ -10,7 +10,7 @@ class UserController{
 
 	async profile(req,res){
 		const userID = auth.getUserID(req);
-		const accountID = req.params.accountID;
+		const accountID = req.params.userID;
 
 		if(!userID){
 			return res.json({

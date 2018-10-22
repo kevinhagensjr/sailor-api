@@ -93,9 +93,7 @@ class UserModel{
    }
 
    try{
-
      const key = this.prefix + '_' + userID;
-
      let user = false;//await this.getCache(key);
      if(user && user.length > 0){
        return JSON.parse(user);
