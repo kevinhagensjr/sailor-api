@@ -25,7 +25,7 @@ class UserController{
 			});
 		}
 
-		let profile = await this.userModel.getUser(accountID);
+		let profile = await this.userModel.getUser(accountID.toString());
 		if(!profile){
 			return res.json({
 				success : false,
