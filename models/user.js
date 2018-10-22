@@ -107,10 +107,8 @@ class UserModel{
      if(result.length == 0){
        return false;
      }
-
      user = result[0];
-     await this.setCache(key,JSON.stringify(user));
-
+     //await this.setCache(key,JSON.stringify(user));
      return user;
 
    }catch(e){
