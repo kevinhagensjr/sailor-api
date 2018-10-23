@@ -5,7 +5,7 @@ const environment = process.env.NODE_ENV  || 'production';
 
 let config = {
 	environment : environment.toString(), //set enviornment production vs development
-	cdn : 'http://dpr427tvll08r.cloudfront.net', //cdn for thumbnails and avatars
+	cdn : 'http://dpr427tvll08r.cloudfront.net/', //cdn for thumbnails and avatars
 	server : {
 		name : serverName.toString()
 	},
