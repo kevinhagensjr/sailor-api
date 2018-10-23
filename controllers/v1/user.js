@@ -1,6 +1,7 @@
 const debug = require('debug')('Sailor:UserController');
 const config = require('./../../config');
 const auth = require('./../../services/auth');
+const geocoder = require('node-open-geocoder');
 
 class UserController{
 	constructor(){
@@ -120,6 +121,9 @@ class UserController{
 			 if(address2){
 				 userObject.address.address2 = address2;
 			 }
+			 const formattedAddress = userObject.getFormattedAddress(userObject.address);
+			 const geocodedAddress = await geocoder.geocode(formattedAddress);
+			 console.log('address info: ' + geocodedAddress);
 		}
 
 		//update the users account
