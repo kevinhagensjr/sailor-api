@@ -139,10 +139,10 @@ class UserController{
 	}
 
 	async geocodeAddress(addressObject){
-		return new Promise(resolve, ()=>{
+		return new Promise((resolve)=>{
 			const formattedAddress = this.userModel.getFormattedAddress(addressObject);
 			googleMaps.geocode({
-	  		address: '1600 Amphitheatre Parkway, Mountain View, CA'
+	  		address: formattedAddress
 			}, function(err, response) {
 					resolve(response);
 			});
