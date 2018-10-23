@@ -51,7 +51,7 @@ class SaleController{
 				title : title,
 				description : description,
 				timestamp : timestamp,
-				address : address,
+				address : addressObject,
 				pref : {
 					phone : phone,
 					rating : rating
