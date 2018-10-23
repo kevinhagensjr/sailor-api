@@ -108,6 +108,8 @@ class UserController{
 			}
 		}
 
+		console.log('address: ' + address + ' state: ' + state + ' city: ' + city + ' zipcode: ' + zipcode);
+
 		if(address && state && city && zipcode){
 			 userObject.address = {
 				 address : address,
