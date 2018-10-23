@@ -120,7 +120,7 @@ class UserController{
 				 userObject.address.address2 = address2;
 			 }
 			 const formattedAddress = this.userModel.getFormattedAddress(userObject.address);
-			 const geocodedAddress = googleMapsClient.geocode({
+			 const geocodedAddress = googleMaps.geocode({
 				 address: formattedAddress
 			 }).asPromise();
 			 console.log('address info: ' + JSON.stringify(geocodedAddress.json.results));
