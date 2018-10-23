@@ -46,7 +46,7 @@ class SaleController{
 				});
 			}
 			const address = this.userModel.getFormattedAddress(addressObject);
-
+		
       let saleObject = {
 				userID : userID,
 				title : title,
@@ -70,7 +70,7 @@ class SaleController{
 			if(thumbnails.length > 0){
 				saleObject.thumbnails = thumbnails;
 			}
-			
+
 			const saleAdded = await this.saleModel.setSale(saleObject);
 			if(!saleAdded){
 				return res.json({

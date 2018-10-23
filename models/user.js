@@ -108,6 +108,9 @@ class UserModel{
        return false;
      }
      user = result[0];
+     if(user.address){
+       user.address.addressString = this.getFormattedAddress(user.address);
+     }
      //await this.setCache(key,JSON.stringify(user));
      return user;
 
