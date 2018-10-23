@@ -332,7 +332,7 @@ class UserModel{
        return false;
      }
      let addressObject = result[0].address;
-     addressObject.formattedAddress = getFormattedAddress(addressObject);
+     addressObject.formattedAddress = this.getFormattedAddress(addressObject);
      return addressObject;
 
    }catch(e){
