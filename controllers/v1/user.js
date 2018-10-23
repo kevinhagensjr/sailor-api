@@ -121,7 +121,7 @@ class UserController{
 			 if(address2){
 				 userObject.address.address2 = address2;
 			 }
-			 const formattedAddress = userModel.getFormattedAddress(userObject.address);
+			 const formattedAddress = this.userModel.getFormattedAddress(userObject.address);
 			 const geocodedAddress = await geocoder.geocode(formattedAddress);
 			 console.log('address info: ' + geocodedAddress);
 		}
