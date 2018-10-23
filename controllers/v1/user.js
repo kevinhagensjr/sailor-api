@@ -140,10 +140,12 @@ class UserController{
 	}
 
 	async geocodeAddress(address){
+		console.log('calling geocode');
 		return new Promise((resolve)=>{
 			googleMaps.geocode({
 	  		address : address
 			}, function(err, response) {
+				console.log('geocode response')
 					resolve(response);
 			});
 		});
