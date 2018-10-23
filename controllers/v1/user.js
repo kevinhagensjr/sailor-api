@@ -1,7 +1,7 @@
 const debug = require('debug')('Sailor:UserController');
 const config = require('./../../config');
 const auth = require('./../../services/auth');
-const googleMaps = require('googlemaps');
+const googleMaps = require('./../../services/googlemaps');
 
 class UserController{
 	constructor(){
