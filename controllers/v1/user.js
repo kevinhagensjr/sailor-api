@@ -123,7 +123,7 @@ class UserController{
 			 const geocodedAddress = googleMaps.geocode({
 				 address: formattedAddress
 			 }).asPromise();
-			 console.log('address info: ' + JSON.stringify(geocodedAddress.json.results));
+			 console.log('address info: ' + JSON.stringify(geocodedAddress));
 		}
 
 		//update the users account
