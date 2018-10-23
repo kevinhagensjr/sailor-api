@@ -29,6 +29,9 @@ let config = {
 			feedback : '#user-feedback',
 			signup   : '#signup'
 		}
+	},
+	google : {
+		api : 'AIzaSyAQZwUNYIoVhrXHZ2W0ASlRG0jZ2KphctM'
 	}
 };
 
