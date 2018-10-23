@@ -146,9 +146,10 @@ class UserController{
 	  		address : address
 			}, function(err, response) {
 				if(err){
+					console.log('geocode err: ' + err);
 					resolve(err);
 				}
-				console.log('geocode response')
+				  console.log('geocode response: ' + JSON.stringify(response));
 					resolve(response);
 			});
 		});
