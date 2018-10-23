@@ -120,7 +120,8 @@ class UserController{
 				 userObject.address.address2 = address2;
 			 }
 
-			 const geocodedAddress = await this.geocodeAddress(userObject.address);
+			 const formattedAddress = await this.userModel.getFormattedAddress(userObject.address);
+			 const geocodedAddress = await this.geocodeAddress(formattedAddress);
 			 console.log('address info: ' + JSON.stringify(geocodedAddress));
 		}
 
@@ -138,11 +139,10 @@ class UserController{
 		});
 	}
 
-	async geocodeAddress(addressObject){
+	async geocodeAddress(address){
 		return new Promise((resolve)=>{
-			const formattedAddress = this.userModel.getFormattedAddress(addressObject);
 			googleMaps.geocode({
-	  		address: formattedAddress
+	  		address : address
 			}, function(err, response) {
 					resolve(response);
 			});
