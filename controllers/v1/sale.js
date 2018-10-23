@@ -70,16 +70,7 @@ class SaleController{
 			if(thumbnails.length > 0){
 				saleObject.thumbnails = thumbnails;
 			}
-
-			const address = await this.userModel.getAddress(userID);
-			if(!address){
-				return res.json({
-					success : false,
-					saleID : "Must have address to submit garage sale."
-				});
-			}
-			saleObject.address = address;
-
+			
 			const saleAdded = await this.saleModel.setSale(saleObject);
 			if(!saleAdded){
 				return res.json({
