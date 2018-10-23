@@ -87,23 +87,25 @@ class UserController{
 		}
 
 		let userObject = {};
-		const currentUsername = await this.userModel.getName(userID);
-		//add new username
-		userObject.username = username.toLowerCase();;
+		if(username){
+			userObject.username = username;
+		}
 
-		const currentEmail = await this.userModel.getEmail(userID);
-		//check to see if email has changed
-		if(currentEmail != email){
-			const emailExists = await this.userModel.emailExists(email);
-			if(emailExists){
-				return res.json({
-					success : false,
-					error	: 'Email address is already taken'
-				});
+		if(email){
+			const currentEmail = await this.userModel.getEmail(userID);
+			//check to see if email has changed
+			if(currentEmail != email){
+				const emailExists = await this.userModel.emailExists(email);
+				if(emailExists){
+					return res.json({
+						success : false,
+						error	: 'Email address is already taken'
+					});
+				}
+
+				//add new email
+				userObject.email = email.toLowerCase();
 			}
-
-			//add new email
-			userObject.email = email.toLowerCase();
 		}
 
 		if(address && state && city && zipcode){
