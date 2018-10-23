@@ -95,7 +95,7 @@ class SaleController{
 						message : message,
 						details : {
 							saleID : saleID,
-							address : address
+							address : addressObject
 						},
 						timestamp : timestamp
 					});
