@@ -318,18 +318,16 @@ class UserModel{
      return false;
    }
  }
+
  async getAddress(userID){
    if(!userID){
      return false;
    }
    try{
-     const result = await this.collection
-     .find({_id : userID.toString()})
-     .project({address : 1,_id : 0})
+     const result = await this.collection.find({_id : new ObjectID(userID)})
+     .project({ address : 1, _id : 0 })
      .toArray();
-
-     if(!result || result.length == 0){
-       console.log('no address found, userID: ' + userID);
+     if(result.length == 0){
        return false;
      }
      let addressObject = result[0].address;
@@ -338,7 +336,7 @@ class UserModel{
      return addressObject;
 
    }catch(e){
-     debug('ERROR: Failed to get address');
+     debug('ERROR, failed to get facebook account, ' + e);
      return false;
    }
  }
