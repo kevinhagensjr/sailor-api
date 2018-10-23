@@ -45,8 +45,7 @@ class SaleController{
 					error : 'Must have address for garage sale'
 				});
 			}
-			const address = this.userModel.getFormattedAddress(addressObject);
-		
+
       let saleObject = {
 				userID : userID,
 				title : title,

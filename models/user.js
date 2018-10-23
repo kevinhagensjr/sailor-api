@@ -332,12 +332,7 @@ class UserModel{
      if(result.length == 0){
        return false;
      }
-     console.log('result: ' + JSON.stringify(result[0]));
-     let resultObject = JSON.parse(result[0]);
-     let addressObject = result.address;
-     console.log('address found: ' + addressObject);
-     addressObject.formattedAddress = this.getFormattedAddress(addressObject);
-     return addressObject;
+    return result[0].address;
 
    }catch(e){
      console.log('ERROR, failed to get account, ' + e);
