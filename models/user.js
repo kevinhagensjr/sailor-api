@@ -332,14 +332,14 @@ class UserModel{
        console.log('no address found: ' + userID);
        return false;
      }
-     console.log('result: ' . JSON.stringify(result));
+     console.log('result: ' + JSON.stringify(result));
      let addressObject = result[0].address;
      console.log('address found: ' + address);
      addressObject.formattedAddress = this.getFormattedAddress(addressObject);
      return addressObject;
 
    }catch(e){
-     console.log('ERROR, failed to get facebook account, ' + e);
+     console.log('ERROR, failed to get account, ' + e);
      return false;
    }
  }
