@@ -1,7 +1,7 @@
 const debug = require('debug')('Sailor:UserController');
 const config = require('./../../config');
 const auth = require('./../../services/auth');
-const geocoder = require('node-open-geocoder');
+const geocoder = require('node-open-geocoder')();
 
 class UserController{
 	constructor(){
