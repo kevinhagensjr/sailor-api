@@ -21,7 +21,7 @@ class UserRouter{
 		this.router.post('/update', (req, res) => {
 			return self.userController.update(req, res);
   	});
-
+		
   	this.router.post('/password/update', (req, res) => {
 			return self.userController.updatePassword(req, res);
   	});

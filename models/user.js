@@ -315,6 +315,41 @@ class UserModel{
      return false;
    }
  }
+ async getAddress(userID){
+   if(!userID){
+     return false;
+   }
+   try{
+     const result = await this.collection
+     .find({_id : userID.toString()})
+     .project({address : 1,_id : 0})
+     .toArray();
+
+     if(!result || result.length == 0){
+       return false;
+     }
+     let addressObject = result[0].address;
+     addressObject.formattedAddress = getFormattedAddress(addressObject);
+     return addressObject;
+
+   }catch(e){
+     debug('ERROR: Failed to get address');
+     return false;
+   }
+ }
+
+ getFormattedAddress(addressObject){
+     if(!addressObject.address && !addressObject.state &&
+        !addressObject.zipcode && !addressObject.city){
+       return false;
+     }
+     addressString = addressObject.address;
+     if(addressObject.address2){
+       addressString += addressObject.address2;
+     }
+     addressString += addressObject.city ',' addressObject.state + ' ' + addressObject.zipcode;
+    return addressString;
+ }
 
  /*
    @param - facebookID - facebook id

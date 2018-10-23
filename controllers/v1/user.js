@@ -71,6 +71,14 @@ class UserController{
 	*/
 	async update(req,res){
 		const userID = auth.getUserID(req);
+		const username = req.body.username;
+		const email    = req.body.email;
+		const address = req.body.address;
+		const address2 = req.body.address2;
+		const city = req.body.city;
+		const state = req.body.state;
+		const zipcode = req.body.zipcode;
+
 		if(!userID){
 			return res.json({
 				success : false,
@@ -79,9 +87,6 @@ class UserController{
 		}
 
 		let userObject = {};
-		const username = req.body.username;
-		const email    = req.body.email;
-
 		const currentUsername = await this.userModel.getUsername(userID);
 
 		//check to see if user changed username
@@ -115,16 +120,26 @@ class UserController{
 			userObject.email = email.toLowerCase();
 		}
 
+		if(address && state && city && zipcode){
+			 userObject.address = {
+				 address : address,
+				 state : state,
+				 city : city,
+				 zipcode : zipcode
+			 };
+			 if(address2){
+				 userObject.address2 = address2;
+			 }
+		}
+
 		//update the users account
 		const updateSuccessful = await this.userModel.update(userID,userObject);
-
 		if(!updateSuccessful){
 			return res.json({
 				success : false,
 				error	: 'Failed to update your account'
 			});
 		}
-
 		return res.json({
 			success : true,
 			username : username

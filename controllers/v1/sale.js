@@ -3,7 +3,6 @@ const config = require('./../../config');
 const auth = require('./../../services/auth');
 const RabbitMQ = require('./../../services/rabbitmq');
 const relativeDate = require('relative-date');
-
 class SaleController{
 
 	constructor(){
@@ -17,7 +16,6 @@ class SaleController{
       const title = req.body.title;
       let description = req.body.description;
       const thumbnailList = req.body.thumbnails;
-			const address = req.body.address;
 			const phone   = req.body.phone;
 			const rating  = req.body.rating;
 			const timestamp = Date.now();
@@ -64,6 +62,15 @@ class SaleController{
 				saleObject.thumbnails = thumbnails;
 			}
 
+			const address = await this.userModel.getAddress(userID);
+			if(!address){
+				return res.json({
+					success : false,
+					saleID : "Must have address to submit garage sale."
+				});
+			}
+			saleObject.address = address;
+
 			const saleAdded = await this.saleModel.setSale(saleObject);
 			if(!saleAdded){
 				return res.json({
@@ -88,7 +95,8 @@ class SaleController{
 						type : 'post',
 						message : message,
 						details : {
-							saleID : saleID
+							saleID : saleID,
+							address : address
 						},
 						timestamp : timestamp
 					});
