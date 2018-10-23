@@ -38,7 +38,7 @@ class SaleController{
 				description = "";
 			}
 
-			const addressObject = this.userModel.getAddress(userID);
+			const addressObject = await this.userModel.getAddress(userID);
 			if(!addressObject){
 				return res.json({
 					success : false,
@@ -52,10 +52,10 @@ class SaleController{
 				title : title,
 				description : description,
 				timestamp : timestamp,
+				address : address,
 				pref : {
 					phone : phone,
-					rating : rating,
-					address : address
+					rating : rating
 				}
 			};
 
