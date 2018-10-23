@@ -38,6 +38,15 @@ class SaleController{
 				description = "";
 			}
 
+			const addressObject = this.userModel.getAddress(userID);
+			if(!address){
+				return res.json({
+					success : false,
+					error : 'Must have address for garage sale'
+				});
+			}
+			const address = this.userModel.getFormattedAddress(addressObject);
+
       let saleObject = {
 				userID : userID,
 				title : title,
