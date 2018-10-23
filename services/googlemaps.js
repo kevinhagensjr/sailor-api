@@ -1,5 +1,4 @@
 const config = require('./../config');
 module.exports = require('@google/maps').createClient({
-  key: config.google.apiKey,
-  Promise: Promise
+  key: config.google.apiKey
 });
