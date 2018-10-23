@@ -79,6 +79,8 @@ class UserController{
 		const state = req.body.state;
 		const zipcode = req.body.zipcode;
 
+		console.log('received request!!!');
+
 		if(!userID){
 			return res.json({
 				success : false,
