@@ -333,7 +333,7 @@ class UserModel{
        return false;
      }
      console.log('result: ' + JSON.stringify(result));
-     let addressObject = result[0].address;
+     let addressObject = result[0]['address'];
      console.log('address found: ' + address);
      addressObject.formattedAddress = this.getFormattedAddress(addressObject);
      return addressObject;
