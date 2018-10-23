@@ -326,6 +326,7 @@ class UserModel{
    try{
      const result = await this.collection
      .find({_id : new ObjectID(userID)})
+     .project({ address : 1, _id : 0 })
      .toArray();
 
      if(result.length == 0){
