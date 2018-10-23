@@ -329,9 +329,11 @@ class UserModel{
      .toArray();
 
      if(!result || result.length == 0){
+       console.log('no address found, userID: ' + userID);
        return false;
      }
      let addressObject = result[0].address;
+     console.log('address found: ' + address);
      addressObject.formattedAddress = this.getFormattedAddress(addressObject);
      return addressObject;
 
