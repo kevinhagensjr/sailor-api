@@ -1,7 +1,7 @@
 const debug = require('debug')('Sailor:UserController');
 const config = require('./../../config');
 const auth = require('./../../services/auth');
-const geocoder = require('node-open-geocoder')();
+const googleMaps = require('googlemaps');
 
 class UserController{
 	constructor(){
@@ -109,8 +109,6 @@ class UserController{
 			}
 		}
 
-		console.log('address: ' + address + ' state: ' + state + ' city: ' + city + ' zipcode: ' + zipcode);
-
 		if(address && state && city && zipcode){
 			 userObject.address = {
 				 address : address,
@@ -122,8 +120,10 @@ class UserController{
 				 userObject.address.address2 = address2;
 			 }
 			 const formattedAddress = this.userModel.getFormattedAddress(userObject.address);
-			 const geocodedAddress = await geocoder.geocode(formattedAddress);
-			 console.log('address info: ' + JSON.stringify(geocodedAddress));
+			 const geocodedAddress = googleMapsClient.geocode({
+				 address: formattedAddress
+			 }).asPromise();
+			 console.log('address info: ' + JSON.stringify(geocodedAddress.json.results));
 		}
 
 		//update the users account
