@@ -5,7 +5,7 @@ const environment = process.env.NODE_ENV  || 'production';
 
 let config = {
 	environment : environment.toString(), //set enviornment production vs development
-	cdn : '', //topik cdn for
+	cdn : 'dpr427tvll08r.cloudfront.net', //cdn for thumbnails and avatars
 	server : {
 		name : serverName.toString()
 	},
