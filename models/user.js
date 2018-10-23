@@ -343,7 +343,7 @@ class UserModel{
         !addressObject.zipcode && !addressObject.city){
        return false;
      }
-     addressString = addressObject.address;
+     let addressString = addressObject.address;
      if(addressObject.address2){
        addressString += addressObject.address2;
      }
