@@ -345,9 +345,9 @@ class UserModel{
      }
      let addressString = addressObject.address;
      if(addressObject.address2){
-       addressString += ' ' + addressObject.address2 + ' ';
+       addressString += ' ' + addressObject.address2;
      }
-     addressString += addressObject.city + ',' + addressObject.state + ' ' + addressObject.zipcode;
+     addressString += ' ' + addressObject.city + ',' + addressObject.state + ' ' + addressObject.zipcode;
     return addressString;
  }
 

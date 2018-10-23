@@ -145,6 +145,9 @@ class UserController{
 			googleMaps.geocode({
 	  		address : address
 			}, function(err, response) {
+				if(err){
+					resolve(err);
+				}
 				console.log('geocode response')
 					resolve(response);
 			});
