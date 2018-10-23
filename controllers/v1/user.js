@@ -79,8 +79,6 @@ class UserController{
 		const state = req.body.state;
 		const zipcode = req.body.zipcode;
 
-		console.log('received request!!!');
-
 		if(!userID){
 			return res.json({
 				success : false,
@@ -89,25 +87,11 @@ class UserController{
 		}
 
 		let userObject = {};
-		const currentUsername = await this.userModel.getUsername(userID);
-
-		//check to see if user changed username
-		if(currentUsername != username){
-			//check to see if new username is taken
-			const usernameExists = await this.userModel.usernameExists(username);
-			if(usernameExists){
-				return res.json({
-					success : false,
-					error	: 'Username is already taken'
-				});
-			}
-
-			//add new username
-			userObject.username = username.toLowerCase();;
-		}
+		const currentUsername = await this.userModel.getName(userID);
+		//add new username
+		userObject.username = username.toLowerCase();;
 
 		const currentEmail = await this.userModel.getEmail(userID);
-
 		//check to see if email has changed
 		if(currentEmail != email){
 			const emailExists = await this.userModel.emailExists(email);
