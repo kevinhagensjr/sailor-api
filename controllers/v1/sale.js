@@ -168,6 +168,11 @@ class SaleController{
 		if(!sales){
 			return res.json([]);
 		}
+
+		for(let i=0; i < sales.length; i++){
+			sales.timestamp = relativeDate(sales.timestamp);
+		}
+
 		return res.json(sales);
 	}
 
