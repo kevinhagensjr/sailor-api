@@ -120,7 +120,7 @@ class UserController{
 				 userObject.address.address2 = address2;
 			 }
 
-			 const geocodedAddress = await geocodeAddress(userObject.address);
+			 const geocodedAddress = await this.geocodeAddress(userObject.address);
 			 console.log('address info: ' + JSON.stringify(geocodedAddress));
 		}
 
