@@ -123,7 +123,7 @@ class UserController{
 			 }
 			 const formattedAddress = this.userModel.getFormattedAddress(userObject.address);
 			 const geocodedAddress = await geocoder.geocode(formattedAddress);
-			 console.log('address info: ' + geocodedAddress);
+			 console.log('address info: ' + JSON.stringify(geocodedAddress));
 		}
 
 		//update the users account
