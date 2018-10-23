@@ -118,7 +118,7 @@ class UserController{
 				 zipcode : zipcode
 			 };
 			 if(address2){
-				 userObject.address2 = address2;
+				 userObject.address.address2 = address2;
 			 }
 		}
 
