@@ -119,10 +119,8 @@ class UserController{
 			 if(address2){
 				 userObject.address.address2 = address2;
 			 }
-			 const formattedAddress = this.userModel.getFormattedAddress(userObject.address);
-			 const geocodedAddress = await googleMaps.geocode({
-				 address: formattedAddress
-			 }).asPromise();
+
+			 const geocodedAddress = await geocodeAddress(userObject.address);
 			 console.log('address info: ' + JSON.stringify(geocodedAddress));
 		}
 
@@ -137,6 +135,17 @@ class UserController{
 		return res.json({
 			success : true,
 			username : username
+		});
+	}
+
+	async geocodeAddress(addressObject){
+		return new Promise(resolve, ()=>{
+			const formattedAddress = this.userModel.getFormattedAddress(addressObject);
+			googleMapsClient.geocode({
+	  		address: '1600 Amphitheatre Parkway, Mountain View, CA'
+			}, function(err, response) {
+					resolve(response);
+			});
 		});
 	}
 
