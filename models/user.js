@@ -324,7 +324,8 @@ class UserModel{
      return false;
    }
    try{
-     const result = await this.collection.find({_id : new ObjectID(userID)})
+     const result = await this.collection
+     .find({_id : new ObjectID(userID)})
      .toArray();
 
      if(result.length == 0){
@@ -337,7 +338,7 @@ class UserModel{
      return addressObject;
 
    }catch(e){
-     debug('ERROR, failed to get facebook account, ' + e);
+     console.log('ERROR, failed to get address, ' + e);
      return false;
    }
  }
