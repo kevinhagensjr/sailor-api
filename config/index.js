@@ -31,7 +31,7 @@ let config = {
 		}
 	},
 	google : {
-		api : 'AIzaSyAQZwUNYIoVhrXHZ2W0ASlRG0jZ2KphctM'
+		apiKey : 'AIzaSyAQZwUNYIoVhrXHZ2W0ASlRG0jZ2KphctM'
 	}
 };
 
