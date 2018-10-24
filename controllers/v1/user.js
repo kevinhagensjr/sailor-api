@@ -25,7 +25,7 @@ class UserController{
 				error   : 'Account is invalid'
 			});
 		}
-		
+
 		let profile = await this.userModel.getUser(accountID.toString());
 		if(!profile){
 			return res.json({
@@ -78,6 +78,7 @@ class UserController{
 		const city = req.body.city;
 		const state = req.body.state;
 		const zipcode = req.body.zipcode;
+		const photo = req.body.photo;
 
 		if(!userID){
 			return res.json({
@@ -122,6 +123,10 @@ class UserController{
 			 const formattedAddress = await this.userModel.getFormattedAddress(userObject.address);
 			 const geocodedAddress = await this.geocodeAddress(formattedAddress);
 			 console.log('address info: ' + JSON.stringify(geocodedAddress));
+		}
+
+		if(photo && photo.includes('avatars')){
+			userObject.photo = config.cnd + photo;
 		}
 
 		//update the users account
