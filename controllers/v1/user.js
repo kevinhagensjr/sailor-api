@@ -126,7 +126,7 @@ class UserController{
 		}
 
 		if(photo && photo.includes('avatars')){
-			userObject.photo = config.cnd + photo;
+			userObject.photo = config.cdn + photo;
 		}
 
 		//update the users account
