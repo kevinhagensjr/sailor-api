@@ -66,10 +66,6 @@ class V1Router{
 			return self.indexController.feed(req, res);
   	});
 
-  	self.router.get('/activity', (req, res) => {
-			return self.indexController.activity(req, res);
-  	});
-
   	self.router.get('/search', (req, res) => {
 			return self.indexController.search(req, res);
   	});
