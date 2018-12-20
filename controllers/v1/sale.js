@@ -178,11 +178,9 @@ class SaleController{
 					postal : "63033",
 			});
 			let listings = await craigslistClient.search({
-				category : 'gms', //garage sale category
-				postal : '63033',
-				searchDistance : 400
+				category : 'gms' //garage sale category
 
-			},'garage sale');
+			},'florissant garage sale');
 
 			console.log(listings);
 		}
