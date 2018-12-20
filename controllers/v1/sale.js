@@ -171,17 +171,15 @@ class SaleController{
 		}
 
 		const address = await this.userModel.getAddress(userID);
-		if(address.zipcode){
+		if(address.city){
 			let craigslistClient = new craigslist.Client();
 			let listings = await craigslistClient.search({
 				category : 'gms', //garage sale category
 				postal : 63033,
 				searchDistance : 1000,
-				city : 'florissant'
+				city : address.city
 
 			},'garage sale');
-
-			console.log(listings);
 		}
 
 		for(let i=0; i < sales.length; i++){
