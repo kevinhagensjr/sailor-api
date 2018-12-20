@@ -174,7 +174,7 @@ class SaleController{
 
 		const address = await this.userModel.getAddress(userID);
 		if(address.city){
-				getSalesFromCraigslist(address.city)
+				this.getSalesFromCraigslist(address.city);
 		}
 
 		for(let i=0; i < sales.length; i++){
