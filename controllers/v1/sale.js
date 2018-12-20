@@ -186,11 +186,10 @@ class SaleController{
 
 	getSalesFromCraigslist(zipcode){
 		let craigslistClient = new craigslist.Client({
-		postal : zipcode,
-		searchDistance : '100 miles'
+				city : "seattle"
 		});
 		craigslistClient.search({
-			category : 'gms', //garage sale category
+			category : 'gms' //garage sale category
 		},'garage sale')
 		.then((listings)=>{
 				listings.forEach((listing) => console.log(listing));
