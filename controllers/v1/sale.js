@@ -177,9 +177,11 @@ class SaleController{
 			let craigslistClient = new craigslist.Client({
 			});
 			let listings = await craigslistClient.search({
-				category : 'gms' //garage sale category
+				category : 'gms', //garage sale category
+				postal : 63033,
+				searchDistance : 1000
 
-			},'florissant garage sale');
+			},'garage sale');
 
 			console.log(listings);
 		}
