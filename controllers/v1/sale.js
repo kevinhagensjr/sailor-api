@@ -174,7 +174,17 @@ class SaleController{
 
 		const address = await this.userModel.getAddress(userID);
 		if(address.zipcode){
-				this.getSalesFromCraigslist(address.zipcode);
+			let craigslistClient = new craigslist.Client({
+					postal : "63033",
+			});
+			let listings = await craigslistClient.search({
+				category : 'gms', //garage sale category
+				postal : '63033',
+				searchDistance : 400
+
+			},'garage sale');
+
+			console.log(listings);
 		}
 
 		for(let i=0; i < sales.length; i++){
@@ -182,20 +192,6 @@ class SaleController{
 		}
 
 		return res.json(sales);
-	}
-
-	getSalesFromCraigslist(zipcode){
-		let craigslistClient = new craigslist.Client({
-				city : "florissant"
-		});
-		craigslistClient.search({
-			category : 'gms' //garage sale category
-		},'garage sale')
-		.then((listings)=>{
-				listings.forEach((listing) => console.log(listing));
-		}).catch((err) => {
-			console.error(err);
-		});
 	}
 
 
