@@ -3,6 +3,8 @@ const config = require('./../../config');
 const auth = require('./../../services/auth');
 const RabbitMQ = require('./../../services/rabbitmq');
 const relativeDate = require('relative-date');
+const craigslist = require('node-craigslist');
+
 class SaleController{
 
 	constructor(){
@@ -150,6 +152,7 @@ class SaleController{
       });
     }
 
+
     sale.username = await this.userModel.getName(sale.userID);
 		sale.timestamp = relativeDate(sale.timestamp);
 
@@ -169,11 +172,30 @@ class SaleController{
 			return res.json([]);
 		}
 
+		const address = await this.userModel.getAddress(userID);
+		if(address.city){
+				getSalesFromCraigslist(address.city)
+		}
+
 		for(let i=0; i < sales.length; i++){
 			sales.timestamp = relativeDate(sales.timestamp);
 		}
 
 		return res.json(sales);
+	}
+
+	getSalesFromCraigslist(city){
+		let craigslistClient = new craigslist.Client({
+			city : city
+		});
+		craigslistClient.search({
+			category : 'gms', //garage sale category
+		},'garage sale')
+		.then((listings)=>{
+				listings.forEach((listing) => console.log(listing));
+		}).catch((err) => {
+			console.error(err);
+		});
 	}
 
 
@@ -207,7 +229,6 @@ class SaleController{
       success : true
     });
   }
-
 	async update(req,res){
 		const userID = auth.getUserID(req);
 		const title = req.body.title;
