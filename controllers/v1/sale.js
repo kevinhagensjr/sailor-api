@@ -151,8 +151,6 @@ class SaleController{
         error : 'Could not find sale'
       });
     }
-
-
     sale.username = await this.userModel.getName(sale.userID);
 		sale.timestamp = relativeDate(sale.timestamp);
 
@@ -175,7 +173,7 @@ class SaleController{
 		const address = await this.userModel.getAddress(userID);
 		if(address.zipcode){
 			let craigslistClient = new craigslist.Client({
-				city : 'stlouis'
+				city : 'florissant'
 			});
 			let listings = await craigslistClient.search({
 				category : 'gms', //garage sale category
