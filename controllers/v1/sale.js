@@ -189,7 +189,7 @@ class SaleController{
 				city : "seattle"
 		});
 		craigslistClient.search({
-			category : 'gms' //garage sale category
+			category : 'stlouis' //garage sale category
 		},'garage sale')
 		.then((listings)=>{
 				listings.forEach((listing) => console.log(listing));
