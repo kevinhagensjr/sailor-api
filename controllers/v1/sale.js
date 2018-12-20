@@ -186,7 +186,7 @@ class SaleController{
 
 	getSalesFromCraigslist(zipcode){
 		let craigslistClient = new craigslist.Client({
-				city : "stlouis"
+				city : "florissant"
 		});
 		craigslistClient.search({
 			category : 'gms' //garage sale category
