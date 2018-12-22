@@ -156,7 +156,7 @@ class SaleController{
 										 resolve(geoResponse['results'][0]['geometry']['location']);
 								 }
 							}
-					 
+					 }
 			});
 
 		});
