@@ -143,7 +143,6 @@ class SaleController{
 	async geolocate(address){
 		return new Promise((resolve)=>{
 			const addressString = address.address  + ' ' + address.city + ' ' +  address.state + ' ' + address.zipcode;
-			console.log('address string: ' + addressString);
 			const url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + addressString.replace(" " + '+') + "&key=AIzaSyAMTl3V7MGwFt3dhYUi5i7l0MKoBqCOV-U";
 			request(url, function (error, response, body) {
 					if(!error || response.statusCode != 200){
@@ -151,8 +150,8 @@ class SaleController{
 					}
 				 	let geoResponse = JSON.parse(body);
 					 if(geoResponse['results']){
+						 	console.log('geo: ' + geoResponse['results']);
 							if(geoResponse['results']['geometry']){
-								console.log('geo: ' + geoResponse['results']);
 								 if(geoResponse['results']['geometry']['location']){
 										 resolve(geoResponse['results']['geometry']['location']);
 								 }
