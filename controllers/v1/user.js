@@ -120,15 +120,16 @@ class UserController{
 				 userObject.address.address2 = address2;
 			 }
 
+			 let coordinates = await this.geolocate(addressObject);
+			 userObject.address.lat = coordinates.lat;
+			 userObject.address.lon = coordinates.lng;
+
 			 const formattedAddress = await this.userModel.getFormattedAddress(userObject.address);
-			 const geocodedAddress = await this.geocodeAddress(formattedAddress);
-			 console.log('address info: ' + JSON.stringify(geocodedAddress));
 		}
 
 		if(photo && photo.includes('avatars')){
 			userObject.photo = config.cdn + photo;
 		}
-
 		//update the users account
 		const updateSuccessful = await this.userModel.update(userID,userObject);
 		if(!updateSuccessful){
@@ -141,6 +142,29 @@ class UserController{
 			success : true,
 			username : username
 		});
+	}
+
+	geolocate(address){
+		return new Promise((resolve,reject)=>{
+			const addressString = address.address  + ' ' + address.city + ' ' +  address.state + ' ' + address.zipcode;
+			const url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + addressString.replace(" " + '+') + "&key=AIzaSyAMTl3V7MGwFt3dhYUi5i7l0MKoBqCOV-U";
+
+			request(url, function (error, response, body) {
+					if(error || response.statusCode != 200){
+						resolve(false);
+					}
+				 	let geoResponse = JSON.parse(body);
+					 if(geoResponse['results']){
+							if(geoResponse['results'][0]['geometry']){
+								 if(geoResponse['results'][0]['geometry']['location']){
+										 resolve(geoResponse['results'][0]['geometry']['location']);
+								 }
+							}
+					 }
+			});
+
+		});
+
 	}
 
 	async geocodeAddress(address){

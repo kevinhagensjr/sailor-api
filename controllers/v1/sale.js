@@ -50,7 +50,6 @@ class SaleController{
 			}
 
 			let coordinates = await this.geolocate(addressObject);
-			 console.log('geo: ' + JSON.stringify(coordinates));
 			addressObject.lat = coordinates.lat;
 			addressObject.lon = coordinates.lng;
 
