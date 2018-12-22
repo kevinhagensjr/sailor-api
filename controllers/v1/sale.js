@@ -208,7 +208,9 @@ class SaleController{
 				error : 'Account is not valid'
 			});
 		}
+		console.log('user id: ' + userID);
 		const sales = await this.saleModel.getHome();
+		console.log('sales ' + JSON.stringify(sales));
 		if(!sales){
 			return res.json([]);
 		}
