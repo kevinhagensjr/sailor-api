@@ -142,7 +142,7 @@ class SaleController{
   }
 
 	geolocate(address){
-		return new Promise((resolve)=>{
+		return new Promise((resolve,reject)=>{
 			const addressString = address.address  + ' ' + address.city + ' ' +  address.state + ' ' + address.zipcode;
 			const url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + addressString.replace(" " + '+') + "&key=AIzaSyAMTl3V7MGwFt3dhYUi5i7l0MKoBqCOV-U";
 			request(url, function (error, response, body) {
