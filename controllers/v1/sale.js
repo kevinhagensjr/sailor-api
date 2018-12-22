@@ -50,7 +50,7 @@ class SaleController{
 			}
 
 			let coordinates = await this.geolocate(addressObject);
-			 console.log(JSON.stringify(coordinates));
+			 console.log('geo: ' + JSON.stringify(coordinates));
 			addressObject.lat = coordinates.lat;
 			addressObject.lon = coordinates.lng;
 
@@ -145,6 +145,7 @@ class SaleController{
 		return new Promise((resolve,reject)=>{
 			const addressString = address.address  + ' ' + address.city + ' ' +  address.state + ' ' + address.zipcode;
 			const url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + addressString.replace(" " + '+') + "&key=AIzaSyAMTl3V7MGwFt3dhYUi5i7l0MKoBqCOV-U";
+
 			request(url, function (error, response, body) {
 					if(!error || response.statusCode != 200){
 						resolve(false);
@@ -153,8 +154,8 @@ class SaleController{
 					 if(geoResponse['results']){
 							if(geoResponse['results'][0]['geometry']){
 								 if(geoResponse['results'][0]['geometry']['location']){
-										 resolve(geoResponse['results'][0]['geometry']['location']);
-										 return geoResponse['results'][0]['geometry']['location'];
+										 resolve(JSON.stringify(geoResponse['results'][0]['geometry']['location']));
+
 								 }
 							}
 					 }
