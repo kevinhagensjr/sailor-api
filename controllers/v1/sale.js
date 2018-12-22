@@ -51,7 +51,7 @@ class SaleController{
 
 			let coordinates = await this.geolocate(addressObject);
 			addressObject.lat = coordinates.lat;
-			addressObject.lon = coordinates.lon;
+			addressObject.lon = coordinates.lng;
 
       let saleObject = {
 				userID : userID,
