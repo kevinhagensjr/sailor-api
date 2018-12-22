@@ -120,7 +120,7 @@ class UserController{
 				 userObject.address.address2 = address2;
 			 }
 
-			 let coordinates = await this.geolocate(addressObject);
+			 let coordinates = await this.geolocate(userObject.address);
 			 userObject.address.lat = coordinates.lat;
 			 userObject.address.lon = coordinates.lng;
 
