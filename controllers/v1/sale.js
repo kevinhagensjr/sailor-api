@@ -49,7 +49,7 @@ class SaleController{
 				});
 			}
 
-			let coordinates = await geolocate(addressObject);
+			let coordinates = await this.geolocate(addressObject);
 			addressObject.lat = coordinates.lat;
 			addressObject.lon = coordinates.lon;
 
