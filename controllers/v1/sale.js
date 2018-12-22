@@ -152,7 +152,7 @@ class SaleController{
 				 	let geoResponse = JSON.parse(body);
 					 if(geoResponse['results']){
 							if(geoResponse['results']['geometry']){
-								console.log('geo: ' + geoResponse['results']['geometry']);
+								console.log('geo: ' + geoResponse['results']);
 								 if(geoResponse['results']['geometry']['location']){
 										 resolve(geoResponse['results']['geometry']['location']);
 								 }
