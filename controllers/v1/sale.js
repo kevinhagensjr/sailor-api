@@ -157,7 +157,7 @@ class SaleController{
 									}
 							 }
 						 }
-					 
+
 					 resolve(false);
 			});
 
@@ -217,14 +217,14 @@ class SaleController{
 
 		const address = await this.userModel.getAddress(userID);
 		if(address.city){
-			let craigslistClient = new craigslist.Client();
+		/*	let craigslistClient = new craigslist.Client();
 			let listings = await craigslistClient.search({
 				category : 'gms', //garage sale category
 				postal : 63033,
 				searchDistance : 1000,
 				city : address.city
 
-			},'garage sale');
+			},'garage sale'); */
 		}
 
 		for(let i=0; i < sales.length; i++){
