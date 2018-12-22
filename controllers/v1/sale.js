@@ -152,6 +152,8 @@ class SaleController{
 					 if(geoResponse['results']){
 							if(geoResponse['results'][0]['geometry']){
 								 if(geoResponse['results'][0]['geometry']['location']){
+
+									 console.log(JSON.stringify(geoResponse['results'][0]['geometry']['location']));
 										 resolve(geoResponse['results'][0]['geometry']['location']);
 								 }
 							}
