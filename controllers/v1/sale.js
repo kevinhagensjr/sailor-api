@@ -216,7 +216,7 @@ class SaleController{
 		}
 
 		const address = await this.userModel.getAddress(userID);
-		if(address.city){
+		/*if(address.city){
 		/*	let craigslistClient = new craigslist.Client();
 			let listings = await craigslistClient.search({
 				category : 'gms', //garage sale category
@@ -224,8 +224,8 @@ class SaleController{
 				searchDistance : 1000,
 				city : address.city
 
-			},'garage sale'); */
-		}
+			},'garage sale');
+		}  */
 
 		for(let i=0; i < sales.length; i++){
 			sales.timestamp = relativeDate(sales.timestamp);
