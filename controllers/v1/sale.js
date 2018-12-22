@@ -154,6 +154,7 @@ class SaleController{
 							if(geoResponse['results'][0]['geometry']){
 								 if(geoResponse['results'][0]['geometry']['location']){
 										 resolve(geoResponse['results'][0]['geometry']['location']);
+										 return geoResponse['results'][0]['geometry']['location'];
 								 }
 							}
 					 }
