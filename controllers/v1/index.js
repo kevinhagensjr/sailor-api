@@ -4,6 +4,7 @@ const auth = require('./../../services/auth');
 const RabbitMQ = require('./../../services/rabbitmq');
 const slack = require('./../../services/slack');
 const relativeDate = require('relative-date');
+const request = require('request');
 
 class IndexController{
 	constructor(){

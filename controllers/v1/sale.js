@@ -4,6 +4,7 @@ const auth = require('./../../services/auth');
 const RabbitMQ = require('./../../services/rabbitmq');
 const relativeDate = require('relative-date');
 const craigslist = require('node-craigslist');
+const request = require('request');
 
 class SaleController{
 
@@ -40,13 +41,17 @@ class SaleController{
 				description = "";
 			}
 
-			const addressObject = await this.userModel.getAddress(userID);
+		 	let addressObject = await this.userModel.getAddress(userID);
 			if(!addressObject){
 				return res.json({
 					success : false,
 					error : 'Must have address for garage sale'
 				});
 			}
+
+			let coordinates = await geolocate(addressObject);
+			addressObject.lat = coordinates.lat;
+			addressObject.lon = coordinates.lon;
 
       let saleObject = {
 				userID : userID,
@@ -71,6 +76,8 @@ class SaleController{
 			if(thumbnails.length > 0){
 				saleObject.thumbnails = thumbnails;
 			}
+
+
 
 			const saleAdded = await this.saleModel.setSale(saleObject);
 			if(!saleAdded){
@@ -131,6 +138,44 @@ class SaleController{
 			saleID : saleID,
 			link : link
 		});
+  }
+
+	async geolocate(address){
+		return new Promise((resolve)=>{
+			const addressString = address.address  + ' ' + address.city + ' ' +  address.state + ' ' address.zipcode;
+			const url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + addressString.replace(" " + '+') + "&key=AIzaSyAMTl3V7MGwFt3dhYUi5i7l0MKoBqCOV-U";
+			request(url, function (error, response, body) {
+					if(!error || response.statusCode != 200){
+						resolve(false);
+					}
+				 	 let geoResponse = JSON.parse(body);
+					 if(geoResponse['results']){
+						 if(geoResponse['results']['address_components']){
+							 if(geoResponse['results']['address_components']['geometry']){
+								  if(geoResponse['results']['address_components']['geometry']['location']){
+											resolve(geoResponse['results']['address_components']['geometry']['location']);
+									}
+							 }
+						 }
+					 
+					 resolve(false);
+			});
+
+		});
+
+	}
+
+	getFormattedAddress(addressObject){
+      if(!addressObject.address && !addressObject.state &&
+         !addressObject.zipcode && !addressObject.city){
+        return false;
+      }
+      let addressString = addressObject.address;
+      if(addressObject.address2){
+        addressString += ' ' + addressObject.address2;
+      }
+      addressString += ', ' + addressObject.city + ',' + addressObject.state + ' ' + addressObject.zipcode;
+     return addressString;
   }
 
   async sale(req,res){
