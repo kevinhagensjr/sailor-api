@@ -151,12 +151,13 @@ class SaleController{
 				 	 let geoResponse = JSON.parse(body);
 					 if(geoResponse['results']){
 						 if(geoResponse['results']['address_components']){
-							 if(geoResponse['results']['address_components']['geometry']){
-								  if(geoResponse['results']['address_components']['geometry']['location']){
-											resolve(geoResponse['results']['address_components']['geometry']['location']);
-									}
-							 }
+								if(geoResponse['results']['address_components']['geometry']){
+									 if(geoResponse['results']['address_components']['geometry']['location']){
+											 resolve(geoResponse['results']['address_components']['geometry']['location']);
+									 }
+								}
 						 }
+					 }
 
 					 resolve(false);
 			});
