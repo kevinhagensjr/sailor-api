@@ -215,17 +215,16 @@ class SaleController{
 			return res.json([]);
 		}
 
-		const address = await this.userModel.getAddress(userID);
-		/*if(address.city){
-		/*	let craigslistClient = new craigslist.Client();
+		const region = await this.userModel.getRegion(userID);
+		if(region){
+			let craigslistClient = new craigslist.Client();
 			let listings = await craigslistClient.search({
 				category : 'gms', //garage sale category
-				postal : 63033,
-				searchDistance : 1000,
-				city : address.city
-
+				city : region
 			},'garage sale');
-		}  */
+		}
+
+		console.log(listings);
 
 		for(let i=0; i < sales.length; i++){
 			sales.timestamp = relativeDate(sales.timestamp);

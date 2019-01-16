@@ -296,6 +296,31 @@ class UserModel{
 
  /*
    @params - userID - id of user for query
+   Description: get region where user lives
+ */
+ async getRegion(userID){
+   if(!userID){
+     return false;
+   }
+
+   try{
+     const result = await this.collection
+     .find({_id : new ObjectID(userID)})
+     .project({ region : 1, _id : 0 })
+     .toArray();
+     
+     if(result.length == 0){
+       return false;
+     }
+     return result[0].region;
+   }catch(e){
+     debug('ERROR, failed to get region, ' + e);
+     return false;
+   }
+ }
+
+ /*
+   @params - userID - id of user for query
    Description: get facebook account
  */
  async getFacebookID(userID){
