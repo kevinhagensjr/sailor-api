@@ -209,7 +209,7 @@ class SaleController{
 			});
 		}
 		console.log('user id: ' + userID);
-		const sales = await this.saleModel.getHome();
+		let sales = await this.saleModel.getHome();
 		console.log('sales ' + JSON.stringify(sales));
 		if(!sales){
 			return res.json([]);
@@ -224,7 +224,18 @@ class SaleController{
 
 			console.log('craigslist results: ' + JSON.stringify(listings));
 
+			for(let gs in listings){
+				let cls = {
+					_id : gs.pid,
+					url : gs.url,
+					title : gs.location,
+					description : gs.title,
+					type : 'craigslist',
+					timestamp : new Date(gs.date).getTime()
+				};
 
+				sales.push(cls);
+			}
 		}
 
 		for(let i=0; i < sales.length; i++){
