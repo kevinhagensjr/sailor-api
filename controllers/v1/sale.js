@@ -222,9 +222,9 @@ class SaleController{
 				category : 'gms', //garage sale category
 				city : region
 			},'garage sale');
-		}
 
-		console.log(listings);
+			console.log('craigslist results: 'listings);
+		}
 
 		for(let i=0; i < sales.length; i++){
 			sales.timestamp = relativeDate(sales.timestamp);
