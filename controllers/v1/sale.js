@@ -223,7 +223,7 @@ class SaleController{
 				city : region
 			},'garage sale');
 
-			console.log('craigslist results: 'listings);
+			console.log('craigslist results: ' + listings);
 		}
 
 		for(let i=0; i < sales.length; i++){
