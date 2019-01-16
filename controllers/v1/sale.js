@@ -222,7 +222,7 @@ class SaleController{
 				category : 'gms' //garage sale category
 			},'garage sale');
 
-			console.log('craigslist results: ' + JSON.stringify(listings));
+//			console.log('craigslist results: ' + JSON.stringify(listings));
 
 			for(let gs in listings){
 				let cls = {
@@ -241,6 +241,8 @@ class SaleController{
 		for(let i=0; i < sales.length; i++){
 			sales.timestamp = relativeDate(sales.timestamp);
 		}
+
+		console.log(JSON.stringify(sales));
 
 		return res.json(sales);
 	}
