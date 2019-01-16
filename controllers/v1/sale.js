@@ -224,7 +224,7 @@ class SaleController{
 
 			console.log('craigslist results: ' + listings);
 
-			for(let gs in )
+
 		}
 
 		for(let i=0; i < sales.length; i++){
