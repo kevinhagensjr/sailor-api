@@ -222,7 +222,7 @@ class SaleController{
 				category : 'gms' //garage sale category
 			},'garage sale');
 
-			console.log('craigslist results: ' + listings);
+			console.log('craigslist results: ' + JSON.stringify(listings));
 
 
 		}
