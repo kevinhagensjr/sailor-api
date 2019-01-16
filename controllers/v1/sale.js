@@ -224,7 +224,7 @@ class SaleController{
 
 //			console.log('craigslist results: ' + JSON.stringify(listings));
 
-			for(let gs in listings){
+			for(let gs of listings){
 				let cls = {
 					_id : gs.pid,
 					url : gs.url,
