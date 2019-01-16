@@ -217,13 +217,14 @@ class SaleController{
 
 		const region = await this.userModel.getRegion(userID);
 		if(region){
-			let craigslistClient = new craigslist.Client();
+			let craigslistClient = new craigslist.Client({city : region});
 			let listings = await craigslistClient.search({
 				category : 'gms', //garage sale category
-				city : region
 			},'garage sale');
 
 			console.log('craigslist results: ' + listings);
+
+			for(let gs in )
 		}
 
 		for(let i=0; i < sales.length; i++){
