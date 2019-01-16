@@ -225,6 +225,9 @@ class SaleController{
 //			console.log('craigslist results: ' + JSON.stringify(listings));
 
 			for(let gs of listings){
+				if(!gs.url){
+					continue;
+				}
 				let cls = {
 					_id : gs.pid,
 					url : gs.url,
@@ -232,8 +235,12 @@ class SaleController{
 					description : gs.title,
 					type : 'craigslist',
 					timestamp : new Date(gs.date).getTime()
-				};
+				}
 
+				if(!gs.location){
+					cls.title = gs.title;
+					cls.description = 'Garage sale found on craigslist';
+				}
 				sales.push(cls);
 			}
 		}
