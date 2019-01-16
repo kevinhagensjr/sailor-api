@@ -219,7 +219,7 @@ class SaleController{
 		if(region){
 			let craigslistClient = new craigslist.Client({city : region});
 			let listings = await craigslistClient.search({
-				category : 'gms', //garage sale category
+				category : 'gms' //garage sale category
 			},'garage sale');
 
 			console.log('craigslist results: ' + listings);
