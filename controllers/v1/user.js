@@ -79,6 +79,7 @@ class UserController{
 		const city = req.body.city;
 		const state = req.body.state;
 		const zipcode = req.body.zipcode;
+		const region = req.body.region;
 		const photo = req.body.photo;
 
 		if(!userID){
@@ -130,6 +131,10 @@ class UserController{
 
 		if(photo && photo.includes('avatars')){
 			userObject.photo = config.cdn + photo;
+		}
+
+		if(region){
+			userObject.region = region;
 		}
 		//update the users account
 		const updateSuccessful = await this.userModel.update(userID,userObject);
